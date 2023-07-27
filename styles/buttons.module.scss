@@ -1,0 +1,37 @@
+$blue-button: #4d13d1;
+$gary-border: #dadada;
+.signup{
+   background: transparent;
+   padding: .8rem 1.4rem;
+   border: .5px solid $gary-border;
+   border-radius: 20px;
+   cursor: pointer;
+}
+.btn_primary{
+   margin-top: 3%;
+   background: black;
+   font-size: .9rem;
+   padding: 14px 18px;
+   border-radius: 5px;
+   transition: ease-in-out .2s;
+   margin-bottom: 4%;
+   cursor: pointer;
+   &:hover{
+      background: transparent;
+      color: black;
+   }
+}
+.tag{
+   background-color: rgb(211, 210, 210);
+   outline: none;
+   border: none;
+   padding: 4px;
+   border-radius: 5px;
+   color: rgb(73, 72, 72);
+   text-transform: capitalize;
+   margin-right: 2%;
+}
+.big{
+   padding: 5px 7px;
+   font-size: 1rem;
+}
