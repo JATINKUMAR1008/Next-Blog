@@ -2,9 +2,11 @@ $primary-color: #64ff00;
 $bg-color: #fbf8f3;
 $small-screen: 780px;
 $extra-small: 600px;
+
 :export {
   primaryColor: $primary-color;
 }
+
 .hero {
   height: fit-content;
   background-color: $bg-color;
@@ -12,47 +14,57 @@ $extra-small: 600px;
   height: 100vh;
   display: flex;
   flex-direction: row;
+
   @media screen and (max-width: $small-screen) {
     flex-direction: column-reverse;
   }
 }
+
 .hero_content {
   padding: 20px 10px;
   margin: auto;
   color: black;
   max-width: 490px;
   text-align: left;
+
   .h_cont_logo {
     position: relative;
     top: -50px;
     width: 50%;
   }
+
   h1 {
     font-weight: 800;
     font-size: 2rem;
     margin-bottom: 0.5%;
     text-transform: capitalize;
   }
+
   ul {
     list-style: none;
     margin-bottom: 1%;
   }
+
   li {
     margin-top: 2%;
+
     &::before {
       content: url("../assets/Checkmark.svg");
       vertical-align: middle;
       padding-right: 1rem;
     }
   }
+
   @media screen and (max-width: $small-screen) {
     padding: 20px 20px;
   }
+
   .h_cont_partners {
     display: flex;
     gap: 4%;
     flex-wrap: wrap;
     margin-top: 2%;
+
     img {
       fill: gray;
       width: 30px;
@@ -64,11 +76,13 @@ $extra-small: 600px;
 .hero_img {
   width: 45%;
   object-fit: cover;
+
   @media screen and (max-width: $small-screen) {
     width: 100%;
     height: 40%;
   }
 }
+
 .hero_header {
   display: flex;
   justify-content: flex-start;
@@ -79,6 +93,7 @@ $extra-small: 600px;
   left: 2rem;
   height: 70px;
   background-color: $bg-color;
+
   @media screen and (max-width: $small-screen) {
     display: flex;
     width: 100%;
@@ -86,25 +101,30 @@ $extra-small: 600px;
     left: 0;
   }
 }
+
 .logo_img {
   width: 130px;
   object-fit: cover;
   position: relative;
   left: -15px;
+
   @media screen and (max-width: $small-screen) {
     width: 150px;
     height: 70px;
   }
 }
+
 .content_page {
   margin: auto;
   padding: 10px 20px;
   max-width: 1408px;
 
 }
+
 .header {
   display: flex;
   flex-direction: column;
+
   .header_cont {
     color: black;
     margin: auto;
@@ -120,6 +140,7 @@ $extra-small: 600px;
       height: 90px;
       object-fit: cover;
     }
+
     nav {
       display: flex;
       align-items: center;
@@ -127,37 +148,45 @@ $extra-small: 600px;
       ul {
         list-style: none;
         display: flex;
+
         li {
           margin-left: 2rem;
           cursor: pointer;
         }
       }
+
       button {
         margin-left: 2rem;
       }
     }
+
     .btn_menu {
       margin-right: 2%;
       cursor: pointer;
       display: none;
     }
+
     @media screen and (max-width: $small-screen) {
       padding: 2px;
+
       nav {
         display: none;
       }
+
       .btn_menu {
         display: block;
       }
     }
   }
+
   .nav_collapsable {
     color: black;
     flex-direction: column;
     position: relative;
     padding: 2px;
     width: 100%;
-    transition: 0.2s ease-in-out;
+    
+
     ul {
       list-style: none;
       margin-bottom: 3%;
@@ -165,6 +194,7 @@ $extra-small: 600px;
       flex-direction: column;
       gap: 2%;
       padding: 0px 10px;
+
       li {
         margin-top: 2%;
         cursor: pointer;
@@ -176,6 +206,7 @@ $extra-small: 600px;
 .active {
   display: flex;
 }
+
 .hidden {
   display: none;
 }
@@ -186,29 +217,34 @@ $extra-small: 600px;
   padding: 40px;
   max-width: 1048px;
   margin-bottom: 5%;
-  .search_content_container{
+
+  .search_content_container {
     padding: 10px 2px;
     width: 450px;
     display: flex;
     flex-direction: column;
     gap: 4%;
-    h1{
+
+    h1 {
       margin-bottom: 2%;
     }
-    .search_box_container{
+
+    .search_box_container {
       display: flex;
       align-items: center;
       flex-direction: row;
       gap: 2%;
-      .search_box{
+
+      .search_box {
         background: white;
-        display:  flex;
+        display: flex;
         align-items: center;
         padding: 5px 10px;
         border: 1px solid black;
         border-radius: 5px;
         width: 100%;
-        input{
+
+        input {
           background-color: transparent;
           outline: none;
           border: none;
@@ -219,147 +255,175 @@ $extra-small: 600px;
           padding: 0px 10px;
           font-size: .9rem;
         }
-        img{
+
+        img {
           width: 23px;
           height: 30px;
         }
-        
-        
+
+
         @media screen and (max-width: $small-screen) {
-          input{
+          input {
             width: 100%;
           }
-          
+
         }
       }
-      button{
+
+      button {
         height: 42px !important;
         padding: 5px 10px;
         width: 100%;
         cursor: pointer;
       }
+
       @media screen and (max-width: $small-screen) {
         flex-direction: column;
         gap: 5%;
         margin-top: 5%;
       }
+
       @media screen and (max-width: $extra-small) {
         flex-direction: column;
         margin-top: 10%;
-        gap:5%;
+        gap: 5%;
       }
     }
-    .p_link{
+
+    .p_link {
       text-decoration: underline;
       cursor: pointer;
       margin-top: 2%;
     }
+
     @media screen and (max-width: $small-screen) {
       width: 100%;
-      
+
     }
+
     @media screen and (max-width: $extra-small) {
       width: 100%;
-      .p_link{
+
+      .p_link {
         margin-top: 5%;
       }
-      h1{
+
+      h1 {
         margin-bottom: 5%;
       }
     }
   }
-  
-  
+
+
 }
 
-.cards_box{
+.cards_box {
   display: flex;
   flex-direction: row;
-  padding: 50px 20px;
+  padding: 10px 20px;
   gap: 1rem;
-  height: 100vh;
-  .card_box_cont{
+
+  .card_box_cont {
     flex-grow: 2;
     width: 100%;
     overflow-y: scroll;
     height: 100%;
     scroll-behavior: smooth;
-    .card_cont{
+
+    .card_cont {
       display: flex;
       align-items: center;
       padding: 2px 10px;
       margin-bottom: 5%;
-      .card_text_content{
+
+      .card_text_content {
         flex-grow: 1;
-        span{
+
+        span {
           display: flex;
           align-items: center;
           gap: 2%;
           margin-bottom: 2%;
-          img{
+
+          img {
             width: 30px;
             height: 30px;
             object-fit: cover;
             border-radius: 100%;
           }
-          .avatar_text_card{
+
+          .avatar_text_card {
             font-weight: 700;
             margin-bottom: 0;
           }
         }
-        h3{
+
+        h3 {
           margin-bottom: 1%;
         }
-        .card_text_desc{
+
+        .card_text_desc {
           margin-bottom: 2%;
           max-width: 480px;
+
           @media screen and (max-width: $small-screen) {
-          max-width: 360px;
+            max-width: 360px;
           }
         }
-        .card_add_info{
+
+        .card_add_info {
           display: flex;
           align-items: center;
           gap: .2rem;
           font-size: .8rem;
         }
+
         @media screen and (max-width: $small-screen) {
           margin-bottom: 10%;
-          span{
-           
-            gap:4%;
-            .avatar_text_card{
+
+          span {
+
+            gap: 4%;
+
+            .avatar_text_card {
               font-weight: 500;
               margin-bottom: 0;
               font-size: .8rem;
             }
           }
-          h3{
+
+          h3 {
             margin-bottom: 2%;
             font-size: 1rem;
           }
-          .card_text_desc{
+
+          .card_text_desc {
             margin-bottom: 2%;
             max-width: 480px;
             font-size: .8rem;
+
             @media screen and (max-width: $small-screen) {
-            max-width: 360px;
+              max-width: 360px;
             }
+
             @media screen and (max-width: $extra-small) {
               max-width: 280px;
             }
 
           }
-          .card_add_info{
+
+          .card_add_info {
             gap: .4rem;
             font-size: .6rem;
           }
         }
 
       }
-      .card_cont_img{
+
+      .card_cont_img {
         flex-grow: 1;
-        img{
+
+        img {
           width: 100%;
           max-width: 200px;
           height: fit-content;
@@ -367,40 +431,54 @@ $extra-small: 600px;
           object-fit: cover;
         }
       }
+
       @media screen and (max-width: $small-screen) {
-       
+
         margin-bottom: 1%;
         overflow-y: hidden;
       }
-      
+
     }
+
     @media screen and (max-width: $small-screen) {
-      max-height: 100vh;
-      
+     
+
     }
   }
-  .button_card_box{
+
+  .button_card_box {
     flex-grow: 1;
     margin-bottom: 2rem;
     padding: 10px 5px;
-    h3{
+
+    h3 {
       margin-bottom: 2%;
     }
-    .buttons_cont{
+
+    .buttons_cont {
       width: 100%;
       margin-top: 1rem;
       display: flex;
       flex-wrap: wrap;
       gap: .5rem;
     }
+
+    @media screen and (min-width: $small-screen) {
+      padding: 50px 5px;
+    }
   }
+
   @media screen and (max-width:$small-screen) {
     flex-direction: column-reverse;
   }
+
+  @media screen and (min-width: $small-screen) {
+    height: 100vh;
+
+  }
+
   @media screen and (max-width: $extra-small) {
     padding: 0px;
   }
-  
+
 }
-
-
