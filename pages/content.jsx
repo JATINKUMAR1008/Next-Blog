@@ -7,6 +7,7 @@ import blog from "../components/data";
 import bgImg from "../assets/tech.jpg";
 import avatar from "../assets/men.jpg";
 import buttons from "../styles/buttons.module.scss";
+
 import { BiLike, BiComment } from "react-icons/bi";
 const Content = () => {
   const trending = [
@@ -23,6 +24,7 @@ const Content = () => {
       <div className={variables.content_page}>
         <Navbar />
         <SearchBox />
+       
         {/* main page contents here */}
         <div className={variables.cards_box}>
           <div className={variables.card_box_cont}>

@@ -185,7 +185,9 @@ $extra-small: 600px;
     position: relative;
     padding: 2px;
     width: 100%;
-    
+    @media screen and (min-width: $small-screen) {
+      display: none;
+    }
 
     ul {
       list-style: none;

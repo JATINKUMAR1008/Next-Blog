@@ -5,9 +5,12 @@ import buttons from '@/styles/buttons.module.scss'
 import variables from '@/styles/variables.module.scss'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
+import { useEffect } from 'react'
+import connectDB from "../DataBase/db"
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+ 
   return (
     <>
       <Head>

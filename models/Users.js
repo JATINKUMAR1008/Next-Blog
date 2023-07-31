@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import internal from "stream";
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -13,5 +12,5 @@ const UserSchema = new mongoose.Schema({
     ],
     subscribers: Number
 })
-
-export default mongoose.model("Users",UserSchema)
+mongoose.models = {}
+export default mongoose.model("User",UserSchema)

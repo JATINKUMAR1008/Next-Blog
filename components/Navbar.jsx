@@ -3,9 +3,10 @@ import variables from "@/styles/variables.module.scss";
 import buttons from "@/styles/buttons.module.scss";
 import logoImg from "../assets/logo.png";
 import menubar from "../assets/icons8-menu.svg";
+import { useRouter } from "next/router";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const router= useRouter()
   return (
     <>
       <header className={variables.header}>
@@ -14,12 +15,12 @@ export default function Navbar() {
 
           <nav>
             <ul>
-              <li>Home</li>
-              <li>Trending</li>
-              <li>Create</li>
-              <li>Login</li>
+              <li onClick={()=> router.push('/content')}>Home</li>
+              <li onClick={()=> router.push('/trending')}>Trending</li>
+              <li onClick={()=> router.push('/create')}>Create</li>
+              <li onClick={()=> router.push('/login')}>Login</li>
             </ul>
-            <button className={buttons.btn_primary}>Create an account </button>
+            <button onClick={()=> router.push('/signup')} className={buttons.btn_primary}>Create an account </button>
           </nav>
           <div
             className={variables.btn_menu}
@@ -35,12 +36,12 @@ export default function Navbar() {
         }`}
       >
         <ul>
-          <li>Home</li>
-          <li>Trending</li>
-          <li>Create</li>
-          <li>Login</li>
+          <li onClick={()=> router.push('/content')}>Home</li>
+          <li onClick={()=> router.push('/trending')}>Trending</li>
+          <li onClick={()=> router.push('/create')}>Create</li>
+          <li onClick={()=> router.push('/login')}>Login</li>
         </ul>
-        <button className={buttons.btn_primary}>Create an account </button>
+        <button className={buttons.btn_primary} onClick={()=> router.push('/signup')}>Create an account </button>
       </nav>
       </header>
     </>
