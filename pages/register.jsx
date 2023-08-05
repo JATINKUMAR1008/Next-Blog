@@ -9,11 +9,13 @@ import b_img from '@/assets/icons8-blogger.svg'
 import s_img from '@/assets/icons8-squarespace.svg'
 import t_img from '@/assets/icons8-twitter.svg'
 import { Formik } from 'formik';
+import { useRouter } from 'next/router';
 
 const Register = () => {
+  const router = useRouter()
   return (
     <div className={variables.hero}>
-      <div className={variables.hero_header}>
+      <div className={variables.hero_header} onClick={()=> router.push('/content')}>
         <img className={variables.logo_img} src={logoImg.src} />
       </div>
       <div className={variables.hero_content}>

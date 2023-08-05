@@ -423,6 +423,10 @@ $extra-small: 600px;
           margin-bottom: 1%;
           font-weight: 800;
           cursor: pointer;
+          @media screen and (max-width: $extra-small) {
+            font-size: 1.2rem;
+            max-width: 50%;
+          }
         }
 
         .card_text_desc {
@@ -430,7 +434,10 @@ $extra-small: 600px;
           max-width: 480px;
 
           @media screen and (max-width: $small-screen) {
-            max-width: 360px;
+            width: 360px;
+          }
+          @media screen and (max-width: $extra-small) {
+            display: none;
           }
         }
 
@@ -443,7 +450,7 @@ $extra-small: 600px;
 
         @media screen and (max-width: $small-screen) {
           margin-bottom: 10%;
-
+          flex-grow: 1;
           span {
 
             gap: 4%;
@@ -457,7 +464,7 @@ $extra-small: 600px;
 
           h3 {
             margin-bottom: 2%;
-            font-size: 1.3rem;
+            
           }
 
           .card_text_desc {
@@ -488,10 +495,12 @@ $extra-small: 600px;
         cursor: pointer;
         img {
           width: 100%;
-          max-width: 200px;
-          
-          max-height: 150px;
+          max-width: 300px;
+          max-height: 100px;
           object-fit: cover;
+        }
+        @media screen and (max-width: $extra-small) {
+          flex-grow: 2;
         }
       }
 

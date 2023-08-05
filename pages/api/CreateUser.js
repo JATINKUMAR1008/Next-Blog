@@ -8,8 +8,8 @@ req,res
 ) => {
   if(req.method == 'POST'){
     let user = new User({
-      name: req.body.name,
-    password: req.body.pass,
+    name: req.body.name,
+    password: req.body.password,
     email: req.body.email,
     img: req.body.img,
     subsriptions: req.body.subsriptions,

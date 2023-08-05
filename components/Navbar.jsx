@@ -36,10 +36,10 @@ export default function Navbar() {
         }`}
       >
         <ul>
-          <li onClick={()=> router.push('/content')}>Home</li>
-          <li onClick={()=> router.push('/trending')}>Trending</li>
-          <li onClick={()=> router.push('/create')}>Create</li>
-          <li onClick={()=> router.push('/auth/login')}>Login</li>
+        <li onClick={()=> router.push('/content')}>Home</li>
+              <li onClick={()=> router.push('/trending')}>Trending</li>
+              <li onClick={()=> router.push('/create')}>Create</li>
+              <li onClick={()=> router.push('/login')}>Login</li>
         </ul>
         <button className={buttons.btn_primary} onClick={()=> router.push('/register')}>Create an account </button>
       </nav>

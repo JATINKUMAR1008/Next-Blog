@@ -18,7 +18,7 @@ const Content = () => {
   useEffect(()=>{
     setTimeout(()=>{
       setLoad(true)
-    },20000)
+    },200)
   },[])
   return (
     <>
