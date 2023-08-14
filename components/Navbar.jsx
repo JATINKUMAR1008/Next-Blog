@@ -4,7 +4,7 @@ import buttons from "@/styles/buttons.module.scss";
 import logoImg from "../assets/logo.png";
 import menubar from "../assets/icons8-menu.svg";
 import { useRouter } from "next/router";
-export default function Navbar() {
+export default function Navbar({handleClick}) {
   const [open, setOpen] = useState(false);
   const router= useRouter()
   return (
@@ -20,7 +20,7 @@ export default function Navbar() {
               <li onClick={()=> router.push('/create')}>Create</li>
               <li onClick={()=> router.push('/login')}>Login</li>
             </ul>
-            <button onClick={()=> router.push('/signup')} className={buttons.btn_primary}>Create an account </button>
+            <button onClick={handleClick} className={buttons.btn_primary}>Create an account </button>
           </nav>
           <div
             className={variables.btn_menu}
@@ -41,7 +41,7 @@ export default function Navbar() {
               <li onClick={()=> router.push('/create')}>Create</li>
               <li onClick={()=> router.push('/login')}>Login</li>
         </ul>
-        <button className={buttons.btn_primary} onClick={()=> router.push('/register')}>Create an account </button>
+        <button onClick={handleClick} className={buttons.btn_primary}>Create an account </button>
       </nav>
       </header>
     </>

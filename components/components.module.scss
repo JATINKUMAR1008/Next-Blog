@@ -1,0 +1,97 @@
+$small-screen: 780px;
+$extra-small: 600px;
+$bg-color: #fbf8f3;
+.register_container{
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(3, 3, 3, 0.8);
+    transition: .2s all ease-in-out;
+}
+.form_container{
+    background-color: $bg-color;
+    width: 30%;
+    height: fit-content;
+    padding: 20px 10px;
+    padding-bottom: 30px;
+    opacity: 1;
+    border-radius: 5px;
+    .heading_button{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1{
+            font-size: 1.75rem;
+            text-align: center;
+        }
+        svg{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    }
+    h1{
+        font-size: 2vw;
+        text-align: left;
+        padding: 10px 0px;
+    }
+    p{
+        text-align: left;
+        padding-bottom: 20px;
+        color: rgb(130, 132, 133);
+    }
+
+    padding: 20px 20px;
+    padding-bottom: 30px;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2%;
+        span{
+            display: flex ;
+            flex-direction: column;
+            
+            label{
+                padding: 1px 5px;
+            }
+            input{
+                background: transparent;
+                outline: .5px solid white;
+                outline: 1px solid black;
+                padding: 10px 20px;
+                border-radius: 2px;
+                margin-bottom: 5%;
+            }
+            
+        }
+        
+        
+    }
+    button{
+        margin-top: .75rem;
+        width: 100%;
+        transition: .2s ease-in-out;
+        &:hover{
+            background-color: rgb(35, 126, 237);
+        }
+    }
+    @media screen and (max-width: $small-screen) {
+        width: 50%;
+        h1{
+            font-size: 3vw;
+        }
+    }
+    @media screen and (max-width: $extra-small) {
+        width: 80%;
+        h1{
+            font-size: 8vw;
+        }
+    }
+}
+.hidden{
+    display: none;
+}

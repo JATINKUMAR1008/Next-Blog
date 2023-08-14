@@ -10,16 +10,38 @@ import buttons from "../styles/buttons.module.scss";
 
 import { BiLike, BiComment } from "react-icons/bi";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Register from "../components/Register";
+import Card from "./Card";
 const Content = () => {
+  const [click, setClick] = useState(false)
+  const handleClick = () => {
+    setClick(!click)
+  }
   const buttons_cluster = [
-    "programming","data science","technology","self improvement","writing","relationships","machine learning","productivity","politics"
+    "programming", "data science", "technology", "self improvement", "writing", "relationships", "machine learning", "productivity", "politics"
   ]
-  const [load,setLoad] = useState(false)
-  useEffect(()=>{
-    setTimeout(()=>{
-      setLoad(true)
-    },200)
-  },[])
+  const [load, setLoad] = useState(true)
+  function disableScroll() {
+    // Get the current page scroll position
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+
+    // if any scroll is attempted, set this to the previous value
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  }
+
+  function enableScroll() {
+    window.onscroll = function () { };
+  }
+  useEffect(() => {
+    if (click) {
+      disableScroll();
+    } else {
+      enableScroll()
+    }
+  }, [click])
   return (
     <>
       <Head>
@@ -28,53 +50,33 @@ const Content = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <SkeletonTheme baseColor="#000000">
-      <div className={variables.content_page}>
-        <Navbar />
-        <SearchBox />
-       
-        {/* main page contents here */}
-        <div className={variables.cards_box}>
-          <div className={variables.card_box_cont}>
-              {blog.map((item,key)=>(
-                <div className={variables.card_cont} key={key}>
-                <div className={variables.card_text_content}>
-                    <span>
-                      {load?<img src={avatar.src} className={variables.avatar_img_card}/>:<Skeleton circle={true}/>}
-                      {load?<p className={variables.avatar_text_card}>{item.author}</p>:<Skeleton/>}
-                    </span>
-                    {load?<h3>{item.title}</h3>:<Skeleton/>}
-                    {load?<p className={variables.card_text_desc}>{item.desc}</p>:<Skeleton count={5}/>}
-                    {load?<div className={variables.card_add_info}>
-                      <p>{item.datePublished}</p>
-                      <p>.</p>
-                      <p>{item.readTime}</p>
-                      <p>.</p>
-                      {item.tags.map((item,key)=>(<button className={buttons.tag} key={key}>
-                        {item}
-                      </button>))}
-                      
-                    </div>:<Skeleton/>}
-                </div>
-                {load?<div className={variables.card_cont_img}>
-                  <img className={variables.card_c_img} src={bgImg.src}/>
-                </div>:<Skeleton circle={true}/>}
-              </div>
-              ))}
-          </div>
-          <div className={variables.button_card_box}>
-            <h3>Discover more of what matters to you</h3>
-            <div className={variables.buttons_cont}>
-                {buttons_cluster.map((item,key)=>(
-                  <button key={key} className={`${buttons.tag}`+` ${buttons.big}`}>
+      
+        <div className={click ? `${variables.content_page}+ ${variables.scroll_stop}` : `${variables.content_page}`}>
+          
+        <Navbar handleClick={handleClick} />
+          <SearchBox />
+          
+          <div className={variables.cards_box}>
+            <div className={variables.card_box_cont}>
+            {blog.map((item,key)=>(
+        <Card item={item} key={key}/>
+      ))}
+            </div>
+            <div className={variables.button_card_box}>
+              <h3>Discover more of what matters to you</h3>
+              <div className={variables.buttons_cont}>
+                {buttons_cluster.map((item, key) => (
+                  <button key={key} className={`${buttons.tag}` + ` ${buttons.big}`}>
                     {item}
                   </button>
-                ))}  
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </SkeletonTheme>
+      
+      
+      <Register click={click} handleClick={handleClick} />
     </>
   );
 };
