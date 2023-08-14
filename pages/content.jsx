@@ -11,7 +11,7 @@ import buttons from "../styles/buttons.module.scss";
 import { BiLike, BiComment } from "react-icons/bi";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Register from "../components/Register";
-import Card from "./Card";
+import Card from "../components/Card";
 const Content = () => {
   const [click, setClick] = useState(false)
   const handleClick = () => {
