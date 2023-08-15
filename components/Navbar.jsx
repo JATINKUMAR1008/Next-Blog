@@ -20,7 +20,7 @@ export default function Navbar({handleClick}) {
               <li onClick={()=> router.push('/create')}>Create</li>
               <li onClick={()=> router.push('/login')}>Login</li>
             </ul>
-            <button onClick={handleClick} className={buttons.btn_primary}>Create an account </button>
+            <button onClick={()=>router.push('/register')} className={buttons.btn_primary}>Create an account </button>
           </nav>
           <div
             className={variables.btn_menu}
@@ -41,7 +41,7 @@ export default function Navbar({handleClick}) {
               <li onClick={()=> router.push('/create')}>Create</li>
               <li onClick={()=> router.push('/login')}>Login</li>
         </ul>
-        <button onClick={handleClick} className={buttons.btn_primary}>Create an account </button>
+        <button onClick={()=>router.push('/register')} className={buttons.btn_primary}>Create an account </button>
       </nav>
       </header>
     </>

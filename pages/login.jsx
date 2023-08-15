@@ -10,29 +10,33 @@ import s_img from '@/assets/icons8-squarespace.svg'
 import t_img from '@/assets/icons8-twitter.svg'
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const router = useRouter()
   return (
     <div className={variables.hero}>
-      <div className={variables.hero_header} onClick={()=> router.push('/content')}>
+      <div className={variables.hero_header} onClick={() => router.push('/content')}>
         <img className={variables.logo_img} src={logoImg.src} />
       </div>
       <div className={variables.hero_content}>
+        <ToastContainer />
 
         <div className={variables.hero_Form}>
 
 
-    <h1>Welcome Back !</h1>
-    <p>login to your account to get access to more content</p>
+          <h1>Welcome Back !</h1>
+          <p>login to your account to get access to more content</p>
 
 
           <Formik
             initialValues={{ email: '', password: '' }}
             validate={values => {
               const errors = {};
-              if (!values.email ) {
+              if (!values.email) {
                 errors.email = 'Required';
-               
+
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
@@ -41,10 +45,45 @@ const Login = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(true);
-              }, 400);
+              const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values)
+              };
+              fetch('/api/auth', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    
+                    if(!data.status){
+                      setTimeout(()=> router.push(`/completeReg/${data._id}`),3000)
+                     
+                    }
+                    toast.success("Login Successfull", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    })
+                    
+                  } else {
+                    toast.error(data.error, {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    })
+                  }
+                });
+              setSubmitting(false);
             }}
           >
             {({
@@ -88,7 +127,7 @@ const Login = () => {
 
 
         </div>
-        
+
       </div>
 
       <img src={landingImg.src} alt="name" className={variables.hero_img} />

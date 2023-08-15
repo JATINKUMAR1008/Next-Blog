@@ -24,7 +24,7 @@ $extra-small: 600px;
   padding: 20px 10px;
   margin: auto;
   color: black;
-  max-width: 490px;
+  max-width: 500px;
   text-align: left;
 
   .hero_Form{
@@ -63,10 +63,76 @@ $extra-small: 600px;
         &:focus{
           outline: 1px solid black;
         }
+        
       }
+      input[type=checkbox]{
+        background-color: white !important;
+        color: white;
+        outline: none;
+      }
+      
       span{
         margin: 1.2% 0%;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 2%;
+        a{
+          margin-bottom: 2%;
+        }
+      }
+      button{
+        width: 100%;
+        background: #000;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 2%;
+        transition: .2s all ease-in;
+        cursor: pointer;
+        &:hover{
+          background-color: transparent;
+          color: black;
+          outline: 1px solid gray;
+        }
+      }
+    }
+    .form_reg{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100vh;
+      gap: 1%;
+      label{
+        font-weight: 500;
+        font-size: 1rem;
+        margin-bottom: 1%;
+      }
+      input{
+        background: white;
+        outline: 1px solid gray;
+        padding: 15px 20px;
+        margin-bottom: 2%;
+        transition: .2s all ease-in-out;
+        &:focus{
+          outline: 1px solid black;
+        }
+        
+      }
+      input[type=checkbox]{
+        background-color: white !important;
+        color: white;
+        outline: none;
+      }
+      
+      span{
+        margin: 1.2% 0%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 2%;
+        a{
+          margin-bottom: 2%;
+        }
       }
       button{
         width: 100%;

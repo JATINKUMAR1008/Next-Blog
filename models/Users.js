@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-
+import mongoose from "mongoose"
 const UserSchema = new mongoose.Schema({
     name: String,
     password: String,
@@ -10,7 +9,10 @@ const UserSchema = new mongoose.Schema({
             userId: String
         }
     ],
-    subscribers: Number
+    subscribers: Number,
+    status: Boolean,
+    verify: Boolean
 })
 mongoose.models = {}
 export default mongoose.model("User",UserSchema)
+
