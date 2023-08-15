@@ -7,8 +7,11 @@ const handler = async(
 req,res
 ) => {
   console.log("return")
+  if(req.method == 'GET'){
+
     let user = await User.find()
     res.status(200).json(user)
+  }
   }
 
 export default connectDB(handler)
