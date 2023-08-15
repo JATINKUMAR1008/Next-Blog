@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import variables from '../styles/variables.module.scss'
 import { Hero } from "../components/Hero"
 import landingImg from "@/assets/hero_img.jpg";
@@ -12,15 +12,17 @@ import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader_bg from './Loader';
 const Register = () => {
+  const [load,setLoad] = useState(false)
   const router = useRouter()
   return (
     <div className={variables.hero}>
       <div className={variables.hero_header} onClick={() => router.push('/content')}>
         <img className={variables.logo_img} src={logoImg.src} />
       </div>
-      <div className={`${variables.hero_content} + w-full h-full`}>
-
+      <div className={`${variables.hero_content} + w-full`}>
+      <ToastContainer/>
         <div className={variables.hero_Form}>
 
 
@@ -46,6 +48,7 @@ const Register = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
+              setLoad(true)
               const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -65,7 +68,19 @@ const Register = () => {
                       progress: undefined,
                       theme: "dark",
                     })
-                    setTimeout(()=>router.push(`/completeReg/${data._id}`),3000)
+                    setTimeout(()=>router.push(`/completeReg/${data.user._id}`),3000)
+                  }else{
+                    toast.error("Internal server error",{
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                    })
+                    setLoad(false)
                   }
                 });
 
@@ -118,7 +133,7 @@ const Register = () => {
 
       </div>
 
-
+              {load?<Loader_bg/>:<></>}
     </div>
   )
 }

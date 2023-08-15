@@ -6,7 +6,7 @@ import logoImg from "@/assets/logo.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
+import { Loader } from 'rsuite';
 
 const Cr = () => {
     const router = useRouter()
@@ -27,12 +27,13 @@ const Cr = () => {
     const preset_key = "am9op2bj"
     const cloud_name = "dhiykiupn"
     const[image,setImage] = useState(null)
+    const [load,setLoad] = useState(true)
     const ImgUpload = (e) =>{
         const file = e.target.files[0]
         const formdata = new FormData()
         formdata.append('file',file)
         formdata.append("upload_preset",preset_key)
-        axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata).then(res=>console.log(res)).catch(err=>console.log(err))
+        axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,formdata).then(res=>{setImage(res.data.secure_url); console.log(res.data.secure_url)}).catch(err=>console.log(err))
     }
   return (
     <div className={variables.hero}>
@@ -49,47 +50,45 @@ const Cr = () => {
 
 
           <Formik
-            initialValues={{ name: '',img: ''}}
+            initialValues={{ name: '',img: '',_id: slug}}
             validate={values => {
               const errors = {};
               if (!values.name) {
                 errors.email = 'Required';
 
-              } else if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-              ) {
-                errors.email = 'Invalid email address';
-              }
-              if (!values.password && String(values.password).length < 12) {
-                errors.password = 'Required and Must be of 12 characters.'
               }
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values)
-              };
-              fetch('/api/RegisterUser', requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                  if (data.success) {
-                    toast.success("Register SuccessFully", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "dark",
-                    })
-                    setTimeout(()=>router.push(`/completeReg/${data._id}`),3000)
-                  }
-                });
-
-              setSubmitting(true);
+              if(state){
+                const requestOptions = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({name: values.name,img: image,_id: slug})
+                };
+                console.log(requestOptions.body)
+                fetch('/api/reg', requestOptions)
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                      toast.success("Register SuccessFully", {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                      })
+                      setTimeout(()=>router.push(`/content`),3000)
+                    }
+                  });
+  
+                setSubmitting(false);
+              }
+              
             }}
           >
             {({
@@ -102,7 +101,8 @@ const Cr = () => {
               isSubmitting,
               /* and other goodies */
             }) => (
-                <div className='w-full mb-5 flex overflow-x-visible gap-4'>
+                <div className='w-full mb-5 flex'>
+                  <ToastContainer/>
               <form onSubmit={handleSubmit}>
                 {!state?<><label>Name</label>
                 <input
@@ -117,9 +117,11 @@ const Cr = () => {
                 <input type='file' onChange={(e)=>ImgUpload(e)}/>
                 </>}
                 {
-                state?<button type='submit' disabled={isSubmitting}>
+                state?image?<button type='submit'  disabled={isSubmitting}>
                     Submit
-                  </button>:<button onClick={()=>setState(!state)}>
+                  </button>:<><button disabled={true}>
+                    <Loader size='sm' className='bg-white'/>
+                    </button></>:<button onClick={()=>setState(!state)}>
                   Next
                 </button>
                 }

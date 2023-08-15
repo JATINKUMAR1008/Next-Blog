@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import variables from '../styles/variables.module.scss'
 import { Hero } from "../components/Hero"
 import landingImg from "@/assets/hero_img.jpg";
@@ -13,8 +13,10 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader_bg from './Loader';
 const Login = () => {
   const router = useRouter()
+  const [load,setLoad] = useState(false)
   return (
     <div className={variables.hero}>
       <div className={variables.hero_header} onClick={() => router.push('/content')}>
@@ -45,6 +47,7 @@ const Login = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
+              setLoad(true)
               const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -53,11 +56,14 @@ const Login = () => {
               fetch('/api/auth', requestOptions)
                 .then(response => response.json())
                 .then(data => {
+                  
                   if (data.success) {
                     
                     if(!data.status){
                       setTimeout(()=> router.push(`/completeReg/${data._id}`),3000)
                      
+                    }else{
+                      setTimeout(()=> router.push(`/content`),3000)
                     }
                     toast.success("Login Successfull", {
                       position: "top-right",
@@ -81,6 +87,7 @@ const Login = () => {
                       progress: undefined,
                       theme: "dark",
                     })
+                    setLoad(false)
                   }
                 });
               setSubmitting(false);
@@ -131,6 +138,7 @@ const Login = () => {
       </div>
 
       <img src={landingImg.src} alt="name" className={variables.hero_img} />
+      {load?<Loader_bg/>:<></>}
     </div>
   )
 }

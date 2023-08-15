@@ -7,7 +7,8 @@ const handler = async(
 req,res
 ) => {
   console.log("return")
-  let user = await User.findOne({email:req.body.email})
+  try{
+    let user = await User.findOne({email:req.body.email})
   const bytes = CryptoJS.AES.decrypt(user.password,process.env.NEXT_PUBLIC_CRYPTO_SECRET)
   console.log(bytes.toString(CryptoJS.enc.Utf8))
   let decrypted = bytes.toString(CryptoJS.enc.Utf8)
@@ -21,6 +22,10 @@ req,res
   }else{
     res.status(200).json({success: false,error: "Invalid Credentials"})
   }
+  }catch(err){
+    res.status(200).json({success: false,error: "Invalid Credentials"})
+  }
+  
   }
 
 export default connectDB(handler)
