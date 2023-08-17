@@ -161,7 +161,7 @@ const Create = () => {
                 <label className='text-md font-semibold'>Cover Image</label>
                     <input type='file' className='bg-white py-4 border-black outline-1 outline-black px-10 w-full' onChange={(e) => ImgUpload(e)} />
                 </span>
-                {!Object.keys(user).length?<button className={buttons.btn_primary} onClick={()=>router.push('/login')}>Submit</button>:<button type='submit' className={buttons.btn_primary} onClick={handleSubmit}>Submit</button>}
+                {!Object.keys(user).length?<button className={buttons.btn_primary} onClick={()=>router.push('/login')}>Submit 🔒</button>:<button type='submit' className={buttons.btn_primary} onClick={handleSubmit}>Submit</button>}
                 
             </form>)}
             </Formik>
