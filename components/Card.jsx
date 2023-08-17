@@ -11,7 +11,7 @@ const Card = ({item}) => {
         </div>
         <div>
 
-        <h2 className='font-semibold m-0 sm:text-[1.5rem] text-[1.1rem] leading-6'>Welcome to new world</h2>
+        <h2 className='font-semibold m-0 sm:text-[1.5rem] text-[1.1rem] leading-6'>Welcome to new world ME.</h2>
         <p className='flex flex-col sm:flex-row sm:gap-2 my-2 text-[#888] font-bold text-[.7rem]'>
             <a href="" className='text-[#333]'>Dawid Paszko</a>
             <time>2023-01-06 16:45</time>

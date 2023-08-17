@@ -9,7 +9,7 @@ req,res
   console.log("return")
   if(req.method=="POST"){
     try{
-      await connectDB()
+      
       let user = await User.findOne({email:req.body.email})
     const bytes = CryptoJS.AES.decrypt(user.password,process.env.NEXT_PUBLIC_CRYPTO_SECRET)
     console.log(bytes.toString(CryptoJS.enc.Utf8))
