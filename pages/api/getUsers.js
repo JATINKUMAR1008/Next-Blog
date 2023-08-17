@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 
 export default async function handler(req,res){
   try{
+    console.log("In GEt ")
     await connectDB()
     let user = await User.find()
     if(user){
