@@ -10,7 +10,7 @@ req,res
   if(req.method == 'GET'){
 
     let user = await User.find()
-    res.status(200).json(user)
+    res.send(user)
   }
   }
 

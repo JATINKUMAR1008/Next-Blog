@@ -14,16 +14,16 @@ req,res
   let decrypted = bytes.toString(CryptoJS.enc.Utf8)
   if(user){
     if(req.body.email==user.email && req.body.password == decrypted){
-      res.status(200).json({success: true,email:user.email,status:user.status,_id:user._id})
+      res.status(200).send({success: true,email:user.email,status:user.status,_id:user._id})
     }
     else{
-      res.status(200).json({success: false,error: "Invalid Credentials"})
+      res.status(200).send({success: false,error: "Invalid Credentials"})
     }
   }else{
-    res.status(200).json({success: false,error: "Invalid Credentials"})
+    res.status(200).send({success: false,error: "Invalid Credentials"})
   }
   }catch(err){
-    res.status(200).json({success: false,error: "Invalid Credentials"})
+    res.status(200).send({success: false,error: "Invalid Credentials"})
   }
   
   }
