@@ -11,20 +11,20 @@ import buttons from "../styles/buttons.module.scss";
 import { BiLike, BiComment } from "react-icons/bi";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Register from "../components/Register";
-import Card from "../components/Card";
-const Content = () => {
-  const [click, setClick] = useState(false)
+import Card from "../components/Card"
+function Content() {
+  const [click, setClick] = useState(false);
   const handleClick = () => {
-    setClick(!click)
-  }
+    setClick(!click);
+  };
   const buttons_cluster = [
     "programming", "data science", "technology", "self improvement", "writing", "relationships", "machine learning", "productivity", "politics"
-  ]
-  const [load, setLoad] = useState(true)
+  ];
+  const [load, setLoad] = useState(true);
   function disableScroll() {
     // Get the current page scroll position
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
     // if any scroll is attempted, set this to the previous value
     window.onscroll = function () {
@@ -39,9 +39,9 @@ const Content = () => {
     if (click) {
       disableScroll();
     } else {
-      enableScroll()
+      enableScroll();
     }
-  }, [click])
+  }, [click]);
   return (
     <>
       <Head>
@@ -50,35 +50,35 @@ const Content = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-        <div className={click ? `${variables.content_page}+ ${variables.scroll_stop}` : `${variables.content_page}`}>
-          
+
+      <div className={click ? `${variables.content_page}+ ${variables.scroll_stop}` : `${variables.content_page}`}>
+
         <Navbar handleClick={handleClick} />
-          <SearchBox />
-          
-          <div className={variables.cards_box}>
-            <div className={variables.card_box_cont}>
-            {blog.map((item,key)=>(
-        <Card item={item} key={key}/>
-      ))}
-            </div>
-            <div className={variables.button_card_box}>
-              <h3>Discover more of what matters to you</h3>
-              <div className={variables.buttons_cont}>
-                {buttons_cluster.map((item, key) => (
-                  <button key={key} className={`${buttons.tag}` + ` ${buttons.big}`}>
-                    {item}
-                  </button>
-                ))}
-              </div>
+        <SearchBox />
+
+        <div className={variables.cards_box}>
+          <div className={variables.card_box_cont}>
+            {blog.map((item, key) => (
+              <Card item={item} key={key} />
+            ))}
+          </div>
+          <div className={variables.button_card_box}>
+            <h3>Discover more of what matters to you</h3>
+            <div className={variables.buttons_cont}>
+              {buttons_cluster.map((item, key) => (
+                <button key={key} className={`${buttons.tag}` + ` ${buttons.big}`}>
+                  {item}
+                </button>
+              ))}
             </div>
           </div>
         </div>
-      
-      
+      </div>
+
+
       <Register click={click} handleClick={handleClick} />
     </>
   );
-};
+}
 
 export default Content;

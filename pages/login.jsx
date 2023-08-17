@@ -14,9 +14,12 @@ import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader_bg from './Loader';
+import {logIn} from '../redux/features/auth-slice'
+import { useDispatch } from 'react-redux';
 const Login = () => {
   const router = useRouter()
   const [load,setLoad] = useState(false)
+  const dispatch = useDispatch()
   return (
     <div className={variables.hero}>
       <div className={variables.hero_header} onClick={() => router.push('/content')}>
@@ -61,8 +64,9 @@ const Login = () => {
                     
                     if(!data.status){
                       setTimeout(()=> router.push(`/completeReg/${data._id}`),3000)
-                     
+                      
                     }else{
+                      dispatch(logIn({name:data.name,_id:data._id,user:data.user}))
                       setTimeout(()=> router.push(`/content`),3000)
                     }
                     toast.success("Login Successfull", {

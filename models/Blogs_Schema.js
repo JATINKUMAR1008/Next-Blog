@@ -5,7 +5,7 @@ const BlogSchema = new mongoose.Schema({
     desc: String,
     author: String,
     date: String,
-    readTime: String,
+    img: String,
     tags: [
         {tag: String}
     ],

@@ -4,7 +4,7 @@ import { Loader } from 'rsuite'
 import { Oval } from 'react-loader-spinner'
 const Loader_bg = () => {
   return (
-    <div className='fixed inset-0 bg-black opacity-60 flex items-center justify-center'>
+    <div className='fixed inset-0 bg-black opacity-60 flex items-center justify-center z-20'>
         <Oval
   height={60}
   width={60}
