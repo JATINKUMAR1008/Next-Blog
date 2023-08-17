@@ -9,7 +9,7 @@ req,res
   console.log('post return')
   if(req.method == 'POST'){
     try{
-      
+      await connectDB()
       let user = new User({
       
       password: CryptoJS.AES.encrypt(req.body.password,process.env.NEXT_PUBLIC_CRYPTO_SECRET).toString(),

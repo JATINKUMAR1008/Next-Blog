@@ -10,7 +10,7 @@ req,res
   console.log('post return')
   if(req.method == 'POST'){
     try{
-     
+      await connectDB()
       let user = await User.findOneAndUpdate({_id: req.body._id},{
           name: req.body.name,
           img: req.body.img,
