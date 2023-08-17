@@ -3,15 +3,15 @@ import connectDB from '@/DataBase/db'
 import User from '@/models/Users'
 import { NextResponse } from 'next/server'
 
-const handler = async(
-req,res
-) => {
-  console.log("return")
-  if(req.method == 'GET'){
-
+export default async function handler(req,res){
+  try{
+    await connectDB()
     let user = await User.find()
-    res.send(user)
+    if(user){
+      res.status(200).send(user)
+    }
   }
+  catch(err){
+    res.status(504).send({message: "Error Occured"})
   }
-
-export default connectDB(handler)
+}

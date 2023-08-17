@@ -3,19 +3,28 @@ import connectDB from '@/DataBase/db'
 import User from '@/models/Users'
 import { NextResponse } from 'next/server'
 var CryptoJS = require('crypto-js')
-const handler = async(
+export default async function handler(
 req,res
-) => {
+)  {
+
   console.log('post return')
   if(req.method == 'POST'){
-    let user = await User.findOneAndUpdate({_id: req.body._id},{
-        name: req.body.name,
-        img: req.body.img,
-        status: true
-    })
-    await user.save()
-    res.status(200).send({success: true,user:user})
+    try{
+      await connectDB()
+      let user = await User.findOneAndUpdate({_id: req.body._id},{
+          name: req.body.name,
+          img: req.body.img,
+          status: true
+      })
+      await user.save()
+      res.status(200).send({success: true,user:user})
+    }catch(err){
+      res.send(504).send({message: "Error Occured"})
+    }
   
   }
+  else{
+    res.status(400).send({message:"Only POST request allowed"})
+  }
 }
-export default connectDB(handler)
+
