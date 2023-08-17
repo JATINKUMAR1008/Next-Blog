@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import variables from '../styles/variables.module.scss'
 import Tiptap from '../components/TipTap'
-import JoditEditor from 'jodit-react'
 import logoImg from "@/assets/logo.png";
 import { TagPicker } from 'rsuite'
 import "rsuite/dist/rsuite.min.css"
@@ -12,8 +11,9 @@ import axios from 'axios';
 import { Formik } from 'formik';
 import {useAppSelector} from '../redux/store'
 import { ToastContainer, toast } from 'react-toastify';
-
+import dynamic from 'next/dynamic';
 const Create = () => {
+  const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
     const editor = useRef(null)
     const [content,setContent] = useState('')
     const router = useRouter()
